@@ -1,0 +1,78 @@
+package FinalExam;
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+
+		String first = "nick"; 
+		String last = "venito"; 
+
+		Scanner in = new Scanner(System.in); 
+		boolean validInput = false;
+		String search =" search";
+		while (!validInput) {
+			System.out.print("Enter username:"); 
+			String username = in.next(); 
+			System.out.print("Enter password:"); 
+			String pass = in.next(); 
+
+			// Check if user-name and password match or not. 
+			if (username.equals(first) && pass.equals(last))
+			{ 
+				System.out.printf("Welcome to the Gym database!   %n   Type search or bmi");
+				validInput=true;
+
+			}
+
+			else { 
+				System.out.println("Who are you access not granted"); 
+
+			}
+		}
+		if (!validInput) {
+			System.exit(0);
+
+		}
+		GymMembers g = new GymMembers();
+		g.userSearch("Chris Smith");
+		String inputtext = " ";
+		while(!inputtext.equals("quit")) {
+
+			inputtext=in.nextLine();
+			switch (inputtext) {
+			case "search":
+				System.out.println("Type in known username ");
+				inputtext = in.nextLine();
+				Member m = g.userSearch(inputtext);
+				if (m == null) {
+					System.out.println("User not found");
+				}
+				else {
+					m.printinfo();
+				}
+				System.out.println();
+				break;
+				
+			case "bmi":
+				System.out.println("Enter a Username");
+				inputtext=in.nextLine();
+				
+				double bmi = g.getbmi(inputtext);
+				if (bmi < 0){
+					System.out.println("Not valid bmi");    
+				}
+				else{
+					System.out.println("The Entered Members Bmi is: " + bmi);
+					System.out.println();
+					break;
+					
+				}
+			}
+
+
+
+		}
+	}
+}
