@@ -1,0 +1,47 @@
+package FinalExam;
+import java.util.*;
+
+public class Member {
+	public String name = "no name"; // our student class has 3 properties
+	public int membernumber = 0 ;
+	public int age = 0;
+	public double height = 0;
+	public double weight = 0;
+	public boolean membership = false;
+	public String level = "undefined";
+	public int squat = 0;
+	public int bench = 0;
+	public int deadlift = 0;
+	public Date date = new Date();
+	public void printinfo(){ //create a method is not going to take any valuer or return any and access the properties of this class
+		System.out.println("Member Name "+ name);
+		System.out.println("Member Number "+ membernumber);
+		System.out.println("Member Age: "+ age);
+		System.out.println("Has MemberShip? "+ membership);
+		System.out.println("height: " + height);
+		System.out.println("weight: " + weight);
+		System.out.println("Bench Max: " + bench);
+		System.out.println("Squat Max: " + squat);
+		System.out.println("Deadlift Max: " + deadlift);
+		System.out.println("Member information accurate as of: "+ date);
+		System.out.println();
+		System.out.println("Level? "+ level);
+		System.out.println();
+
+	}
+	public double getbmi() {
+		double bmi=0;
+
+		final double KILOGRAMS_PER_POUNDS = 0.45359237;
+
+		final double METERS_PER_INCH = 0.0254;
+
+		double weightInKilograms = weight * KILOGRAMS_PER_POUNDS;
+
+		double heightINmeters = height * METERS_PER_INCH;
+
+		bmi = weightInKilograms/ (heightINmeters * heightINmeters);
+
+		return bmi;
+	}
+}
