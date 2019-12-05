@@ -1,0 +1,100 @@
+package FinalExam;
+import java.util.Scanner;
+import java.util.*;
+public class GymMembers {
+
+	Member members[];
+
+	public GymMembers() {
+		Member chris = new Member();
+		chris.name = "Chris Smith";
+		chris.membernumber = 1;
+		chris.age = 20;
+		chris.weight= 185;
+		chris.height = 71; 
+		chris.membership = true;
+		chris.level = "BluePro";
+		chris.bench = 385;
+		chris.squat = 405;
+		chris.deadlift = 465;
+		chris.date = new Date();
+
+		Member ben = new Member();
+		ben.name = "Ben Sharp";
+		ben.membernumber = 2;
+		ben.age = 34;
+		ben.weight= 228;
+		ben.height = 73; 
+		ben.membership = true;
+		ben.level = "Blue";
+		ben.bench = 255; 
+		ben.squat = 325;
+		ben.deadlift = 405;
+		ben.date = new Date();
+
+		members= new Member[] {ben, chris};
+	}
+
+	public void BMIconvert() {
+
+		Scanner in = new Scanner(System.in); 
+
+		String BMI = "y";
+		BMI = in.next();
+
+		System.out.println(BMI);
+
+		int yourBMI;
+		while(!BMI.equals("n")) {
+			System.out.println("Do you want to check your BMI? (y/n):");
+			if (BMI.toLowerCase() == "n") {//converts strng to lowercase defined by "n".
+				break;
+			}
+			while (!in.hasNextInt()) {
+				in.next();
+
+			}
+
+			yourBMI = in.nextInt();
+
+			System.out.println("Your BMI is" + yourBMI);
+			if(yourBMI < 18.5) {
+				System.out.println("Underweight");
+			}   else if (yourBMI < 25) {
+				System.out.println("Normal");
+			}   else if (yourBMI < 30) {
+				System.out.println("Overweight");
+			} else {
+				System.out.println("obese");
+			}
+
+			System.out.println("Check another BMI? (y/n): ");
+			BMI = in.next();
+		}
+	}
+
+	public Member userSearch(String name) {
+		Member result = null;
+		// Search through the array of all members 
+		for (int i = 0;i < members.length; i++) {
+			if (members[i]== null) {
+				break;
+			}
+			if(members[i].name.equals(name)) {
+				result = members[i];
+				break;
+			}
+		}
+
+		return result;
+	}
+
+	public double getbmi(String name) {
+		Member m = null;
+		m=userSearch(name);
+		if (m == null) {
+			return -1;
+		}
+		return m.getbmi();
+	}
+}
